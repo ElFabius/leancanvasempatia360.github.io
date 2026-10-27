@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lean Canvas – Kit Empatía360</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  --bg: #eef1f6;
+  --surface: #ffffff;
+  --ink: #16213a;
+  --muted: #55607a;
+  --line: #d3d9e6;
+  --blue: #2b5fd9;
+  --teal: #0d8a86;
+  --amber: #c9811a;
+  --violet: #6b4bb0;
+  --rose: #c23a64;
+  --blue-t: #e4ecfd;
+  --teal-t: #dff3f1;
+  --amber-t: #fbefd9;
+  --violet-t: #ece6f8;
+  --rose-t: #fae3ea;
+  --track: #e3e8f1;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1526; --surface: #18213a; --ink: #e8ecf6; --muted: #a2adc7; --line: #2c3857;
+    --blue: #7fa3ff; --teal: #4fd1c7; --amber: #f0b45a; --violet: #b69cf2; --rose: #f08aa8;
+    --blue-t: #1d2b52; --teal-t: #143a3b; --amber-t: #3d2f16; --violet-t: #2c2450; --rose-t: #43202e;
+    --track: #26314f;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1526; --surface: #18213a; --ink: #e8ecf6; --muted: #a2adc7; --line: #2c3857;
+  --blue: #7fa3ff; --teal: #4fd1c7; --amber: #f0b45a; --violet: #b69cf2; --rose: #f08aa8;
+  --blue-t: #1d2b52; --teal-t: #143a3b; --amber-t: #3d2f16; --violet-t: #2c2450; --rose-t: #43202e;
+  --track: #26314f;
+}
+* { box-sizing: border-box; }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 16px; line-height: 1.55;
+}
+.wrap { max-width: 1180px; margin: 0 auto; padding: 28px 18px 56px; }
+h1, h2, h3 { font-family: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif; margin: 0; line-height: 1.15; }
+header { margin-bottom: 24px; }
+h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; letter-spacing: -0.02em; }
+.lede { max-width: 66ch; color: var(--muted); margin: 10px 0 0; font-size: 1.05rem; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 16px; font-size: 0.92rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.sw { width: 14px; height: 14px; border-radius: 4px; background: var(--ink); }
+.sw.key { background: var(--blue); }
+.sw.plain { background: transparent; border: 2px solid var(--line); }
+
+/* canvas grid */
+.canvas {
+  display: grid; gap: 12px;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-areas:
+    "prob prob sol sol val val ven ven seg seg"
+    "prob prob met met val val can can seg seg"
+    "cos cos cos cos cos ing ing ing ing ing";
+}
+.b {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: 16px 16px 14px; border-top: 5px solid var(--line);
+}
+.b h2 { font-size: 1.15rem; font-weight: 700; margin-bottom: 4px; }
+.b .q { font-size: 0.86rem; color: var(--muted); margin: 0 0 10px; }
+.b ul { margin: 0; padding-left: 1.1em; }
+.b li { margin: 0 0 7px; }
+.b p { margin: 0 0 8px; }
+.b strong { font-weight: 600; }
+.b.key { border-top-width: 8px; }
+.prob { grid-area: prob; border-top-color: var(--rose); }
+.sol { grid-area: sol; border-top-color: var(--teal); }
+.val { grid-area: val; border-top-color: var(--blue); background: var(--blue-t); }
+.ven { grid-area: ven; border-top-color: var(--violet); background: var(--violet-t); }
+.seg { grid-area: seg; border-top-color: var(--amber); }
+.met { grid-area: met; border-top-color: var(--teal); }
+.can { grid-area: can; border-top-color: var(--blue); background: var(--blue-t); }
+.cos { grid-area: cos; border-top-color: var(--rose); background: var(--rose-t); }
+.ing { grid-area: ing; border-top-color: var(--teal); background: var(--teal-t); }
+.can, .ven, .cos, .ing { outline: 2px solid transparent; }
+.tag { display: inline-block; font-size: 0.78rem; font-weight: 600; padding: 2px 9px; border-radius: 99px; background: var(--ink); color: var(--bg); margin-left: 8px; vertical-align: middle; }
+
+table.money { width: 100%; border-collapse: collapse; font-size: 0.93rem; margin-top: 6px; }
+.money th, .money td { text-align: left; padding: 6px 8px 6px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.money th { font-weight: 600; }
+.money td.n { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; padding-right: 0; }
+.note { font-size: 0.84rem; color: var(--muted); margin-top: 8px; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+/* evidence */
+section.ev { margin-top: 40px; }
+section.ev h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 800; }
+.ev .sub { color: var(--muted); margin: 6px 0 18px; max-width: 70ch; }
+.evgrid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+.card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+.card .take { font-size: 0.9rem; color: var(--muted); margin: 0 0 12px; }
+.bar { display: grid; grid-template-columns: 1fr 40px; gap: 4px 10px; align-items: center; margin-bottom: 8px; font-size: 0.88rem; }
+.bar .lab { grid-column: 1 / -1; }
+.bar .track { height: 12px; background: var(--track); border-radius: 6px; overflow: hidden; }
+.bar .fill { height: 100%; border-radius: 6px; background: var(--blue); }
+.bar .fill.hi { background: var(--rose); }
+.bar .fill.ok { background: var(--teal); }
+.bar .pct { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+.bar.zero .fill { width: 0; }
+.alert { margin-top: 12px; background: var(--amber-t); border: 1px solid var(--amber); border-radius: 10px; padding: 16px; }
+.alert h3 { font-size: 1.05rem; margin-bottom: 8px; }
+.alert ul { margin: 0; padding-left: 1.1em; }
+.alert li { margin-bottom: 6px; }
+footer { margin-top: 28px; color: var(--muted); font-size: 0.85rem; }
+
+@media (max-width: 960px) {
+  .canvas {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "prob seg"
+      "sol val"
+      "ven ven"
+      "met can"
+      "cos cos"
+      "ing ing";
+  }
+}
+@media (max-width: 620px) {
+  .canvas { grid-template-columns: 1fr; grid-template-areas: "prob" "seg" "val" "sol" "ven" "can" "met" "ing" "cos"; }
+  .two { grid-template-columns: 1fr; }
+}
+@media print {
+  :root { --bg: #fff; }
+  .wrap { padding: 0; }
+  .b, .card { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Kit Empatía360: lienzo de modelo de negocio</h1>
+    <p class="lede">Una caja de dinámicas físicas de 15 minutos (lentes, audífonos, guantes y más) para que los alumnos sientan lo que viven sus compañeros. Este lienzo reúne la viabilidad operativa y financiera de la idea, apoyada en los resultados de tu encuesta.</p>
+    <div class="legend">
+      <span><i class="sw key"></i> Bloques pedidos en la actividad: canales, ingresos, costos y ventaja competitiva</span>
+      <span><i class="sw plain"></i> Bloques de apoyo del Lean Canvas</span>
+    </div>
+  </header>
+
+  <main>
+  <div class="canvas">
+
+    <div class="b prob">
+      <h2>Problema</h2>
+      <p class="q">Lo que dice la encuesta (10 alumnos)</p>
+      <ul>
+        <li><strong>No saben qué sienten los demás.</strong> 6 de 10 creen que es difícil entender a un compañero con autismo, TDAH o discapacidad, y 2 nunca lo habían pensado.</li>
+        <li><strong>Quieren ayudar, pero no saben cómo.</strong> Ante la soledad o las burlas, 4 de 10 dicen que la mayoría no actúa por no saber ayudar, y 3 de 10 por pena o miedo.</li>
+        <li><strong>La exclusión es común.</strong> Los 10 la han visto alguna vez; 6 de 10 dicen que pasa seguido o casi todos los días.</li>
+      </ul>
+      <p class="note"><strong>Alternativas actuales:</strong> charlas, videos, afiches y simuladores de realidad virtual (costosos).</p>
+    </div>
+
+    <div class="b seg">
+      <h2>Segmento de clientes</h2>
+      <p class="q">Quién compra y quién usa</p>
+      <ul>
+        <li><strong>Compra:</strong> colegios (directores, coordinadores de tutoría, psicólogos escolares).</li>
+        <li><strong>Usa:</strong> alumnos durante la hora de tutoría.</li>
+        <li><strong>Uso en casa:</strong> familias, con el kit que el alumno se lleva.</li>
+        <li><strong>Primeros clientes:</strong> colegios con programas de convivencia o inclusión ya activos.</li>
+      </ul>
+    </div>
+
+    <div class="b sol">
+      <h2>Solución</h2>
+      <p class="q">Qué incluye el kit</p>
+      <ul>
+        <li>Lentes, audífonos y guantes para vivir dificultades visuales, sensoriales y motrices.</li>
+        <li>Dinámicas de 15 minutos con guía paso a paso para el docente.</li>
+        <li>Tarjetas de cierre: "¿cómo puedo ayudar ahora?", para convertir la experiencia en una acción concreta.</li>
+        <li>Versión para casa y contenido nuevo con la suscripción.</li>
+      </ul>
+    </div>
+
+    <div class="b val key">
+      <h2>Propuesta de valor</h2>
+      <p class="q">Por qué elegirlo</p>
+      <p><strong>Siente 15 minutos lo que otros sienten cada día.</strong></p>
+      <p>La inclusión deja de ser una charla y se convierte en una experiencia que los alumnos recuerdan, sin tecnología costosa y lista para usar en tutoría.</p>
+      <p>Cada dinámica termina con algo que el alumno puede hacer, lo que responde a su principal barrera: no saber cómo ayudar.</p>
+    </div>
+
+    <div class="b ven key">
+      <h2>Ventaja competitiva <span class="tag">pedido</span></h2>
+      <p class="q">Lo que cuesta copiar</p>
+      <ul>
+        <li><strong>Costo bajo:</strong> materiales sencillos frente a la realidad virtual o los talleres con especialistas.</li>
+        <li><strong>Encaje con el tiempo del colegio:</strong> 15 minutos y sin capacitación larga.</li>
+        <li><strong>Experiencia física:</strong> se vive con el cuerpo, no se escucha ni se mira.</li>
+        <li><strong>Llega al hogar:</strong> la familia participa y refuerza el aprendizaje.</li>
+        <li><strong>A construir:</strong> una biblioteca de dinámicas validadas con especialistas y datos de impacto por colegio. Los materiales se copian fácil, el contenido validado y el seguimiento no.</li>
+      </ul>
+    </div>
+
+    <div class="b met">
+      <h2>Métricas clave</h2>
+      <p class="q">Cómo sabrás que funciona</p>
+      <ul>
+        <li>Colegios que compran tras la demostración.</li>
+        <li>Suscripciones activas y renovación.</li>
+        <li>Sesiones realizadas por kit al mes.</li>
+        <li>Alumnos que dicen "sé cómo ayudar", antes y después.</li>
+      </ul>
+    </div>
+
+    <div class="b can key">
+      <h2>Canales de venta <span class="tag">pedido</span></h2>
+      <p class="q">Cómo llegas al colegio</p>
+      <ul>
+        <li><strong>Demostración gratuita de 15 minutos</strong> con coordinadores de tutoría y psicólogos.</li>
+        <li><strong>Visita directa</strong> a directores de colegios.</li>
+        <li><strong>Padres y APAFA</strong> para el kit de casa y para presionar a favor de la compra.</li>
+        <li><strong>Redes sociales y página web</strong> con videos cortos de las dinámicas.</li>
+        <li><strong>Alianzas</strong> con organizaciones de inclusión y ferias educativas.</li>
+      </ul>
+    </div>
+
+    <div class="b cos key">
+      <h2>Estructura de costos clave <span class="tag">pedido</span></h2>
+      <p class="q">Qué te cuesta operar (cifras en soles, supuestos para cotizar)</p>
+      <div class="two">
+        <div>
+          <p><strong>Variables, por cada kit de aula</strong></p>
+          <table class="money">
+            <tr><td>Lentes, audífonos y guantes (juegos para el salón)</td><td class="n">S/ 110</td></tr>
+            <tr><td>Guía del docente y tarjetas impresas</td><td class="n">S/ 30</td></tr>
+            <tr><td>Caja y empaque</td><td class="n">S/ 15</td></tr>
+            <tr><td>Envío</td><td class="n">S/ 25</td></tr>
+            <tr><th>Costo por kit</th><td class="n"><strong>S/ 180</strong></td></tr>
+          </table>
+        </div>
+        <div>
+          <p><strong>Fijos, por mes</strong></p>
+          <table class="money">
+            <tr><td>Diseño y validación de dinámicas con especialistas</td><td class="n">S/ 700</td></tr>
+            <tr><td>Marketing y demostraciones</td><td class="n">S/ 600</td></tr>
+            <tr><td>Almacén, web y otros</td><td class="n">S/ 500</td></tr>
+            <tr><th>Total fijo</th><td class="n"><strong>S/ 1,800</strong></td></tr>
+          </table>
+        </div>
+      </div>
+      <p class="note">Son cifras de ejemplo para completar el lienzo. Reemplázalas con cotizaciones reales de proveedores antes de presentarlas como definitivas.</p>
+    </div>
+
+    <div class="b ing key">
+      <h2>Flujo de ingresos <span class="tag">pedido</span></h2>
+      <p class="q">Cómo gana dinero el kit</p>
+      <table class="money">
+        <tr><th>Fuente</th><th>Quién paga</th><th class="n">Precio de ejemplo</th></tr>
+        <tr><td>Venta del kit de aula (pago único)</td><td>Colegio</td><td class="n">S/ 380</td></tr>
+        <tr><td>Suscripción: dinámicas nuevas y reposición de materiales</td><td>Colegio</td><td class="n">S/ 49 al mes</td></tr>
+        <tr><td>Kit individual para casa</td><td>Familia o colegio</td><td class="n">S/ 90</td></tr>
+        <tr><td>Capacitación breve al docente (opcional)</td><td>Colegio</td><td class="n">Por definir</td></tr>
+      </table>
+      <p class="note"><strong>Margen y punto de equilibrio:</strong> cada kit deja unos S/ 200 sobre su costo. Con S/ 1,800 de costos fijos al mes, necesitas vender cerca de 9 kits mensuales para cubrirlos, sin contar la suscripción, que suma ingreso recurrente.</p>
+    </div>
+
+  </div>
+
+  <section class="ev" aria-labelledby="ev-t">
+    <h2 id="ev-t">Evidencia de la encuesta</h2>
+    <p class="sub">10 respuestas de alumnos. Sirven para ver una tendencia, pero la muestra es pequeña, así que conviene ampliarla antes de decidir precios o volúmenes.</p>
+    <div class="evgrid">
+
+      <div class="card">
+        <h3>¿Qué te gustaría más para que en tu salón todos se lleven mejor?</h3>
+        <p class="take">Lo más votado fue el buzón anónimo; los juegos de 15 minutos quedaron en último lugar.</p>
+        <div class="bar"><span class="lab">Buzón secreto y anónimo</span><div class="track"><div class="fill hi" style="width:60%"></div></div><span class="pct">60%</span></div>
+        <div class="bar"><span class="lab">Menos charlas largas y más actividades divertidas</span><div class="track"><div class="fill" style="width:30%"></div></div><span class="pct">30%</span></div>
+        <div class="bar"><span class="lab">Juegos de 15 minutos para ponerse en el lugar del otro</span><div class="track"><div class="fill" style="width:10%"></div></div><span class="pct">10%</span></div>
+        <div class="bar zero"><span class="lab">Misiones secretas en equipo</span><div class="track"><div class="fill"></div></div><span class="pct">0%</span></div>
+      </div>
+
+      <div class="card">
+        <h3>¿Has visto que a un compañero le cueste hacer amigos o lo dejen fuera?</h3>
+        <p class="take">Nadie respondió "nunca pasa": el problema existe en los 10 salones.</p>
+        <div class="bar"><span class="lab">Pasa pocas veces</span><div class="track"><div class="fill" style="width:40%"></div></div><span class="pct">40%</span></div>
+        <div class="bar"><span class="lab">Pasa seguido</span><div class="track"><div class="fill hi" style="width:40%"></div></div><span class="pct">40%</span></div>
+        <div class="bar"><span class="lab">Pasa casi todos los días</span><div class="track"><div class="fill hi" style="width:20%"></div></div><span class="pct">20%</span></div>
+        <div class="bar zero"><span class="lab">Nunca pasa</span><div class="track"><div class="fill"></div></div><span class="pct">0%</span></div>
+      </div>
+
+      <div class="card">
+        <h3>¿Te daría curiosidad probar lentes, audífonos o guantes especiales?</h3>
+        <p class="take">6 de 10 tienen algún interés, pero 4 de 10 no se interesarían.</p>
+        <div class="bar"><span class="lab">Sí, me serviría para entenderlos mejor</span><div class="track"><div class="fill ok" style="width:20%"></div></div><span class="pct">20%</span></div>
+        <div class="bar"><span class="lab">Tal vez, por curiosidad</span><div class="track"><div class="fill" style="width:40%"></div></div><span class="pct">40%</span></div>
+        <div class="bar"><span class="lab">No me interesaría</span><div class="track"><div class="fill hi" style="width:40%"></div></div><span class="pct">40%</span></div>
+      </div>
+
+      <div class="card">
+        <h3>¿Qué tan fácil es entender lo que siente un compañero con una condición diferente?</h3>
+        <p class="take">La mayoría reconoce que no sabe qué sienten: justo lo que el kit busca resolver.</p>
+        <div class="bar"><span class="lab">Difícil, porque no sé qué sienten</span><div class="track"><div class="fill ok" style="width:60%"></div></div><span class="pct">60%</span></div>
+        <div class="bar"><span class="lab">Normal</span><div class="track"><div class="fill" style="width:20%"></div></div><span class="pct">20%</span></div>
+        <div class="bar"><span class="lab">Nunca me lo he puesto a pensar</span><div class="track"><div class="fill" style="width:20%"></div></div><span class="pct">20%</span></div>
+        <div class="bar zero"><span class="lab">Muy fácil</span><div class="track"><div class="fill"></div></div><span class="pct">0%</span></div>
+      </div>
+
+      <div class="card">
+        <h3>Cuando alguien queda solo o sufre burlas, ¿por qué la mayoría no hace nada?</h3>
+        <p class="take">La barrera más grande es no saber cómo ayudar, y esa es una habilidad que se puede enseñar.</p>
+        <div class="bar"><span class="lab">Porque no saben cómo ayudar</span><div class="track"><div class="fill ok" style="width:40%"></div></div><span class="pct">40%</span></div>
+        <div class="bar"><span class="lab">Por pena o miedo a que también se burlen de ellos</span><div class="track"><div class="fill" style="width:30%"></div></div><span class="pct">30%</span></div>
+        <div class="bar"><span class="lab">Porque prefieren no meterse en problemas</span><div class="track"><div class="fill" style="width:20%"></div></div><span class="pct">20%</span></div>
+        <div class="bar"><span class="lab">Porque no se dan cuenta de que la persona lo pasa mal</span><div class="track"><div class="fill" style="width:10%"></div></div><span class="pct">10%</span></div>
+      </div>
+
+    </div>
+
+    <div class="alert">
+      <h3>Lo que conviene revisar antes de presentar el modelo</h3>
+      <ul>
+        <li><strong>El buzón anónimo ganó con 60%.</strong> Puedes sumar al kit un buzón o tarjetas anónimas para que los alumnos cuenten cómo se sienten. Así respondes a lo que más piden sin cambiar la idea central.</li>
+        <li><strong>Cuida cómo presentas los juegos.</strong> Solo 10% los eligió primero, pero 30% pidió más actividades divertidas y menos charlas. Venderlos como actividad de tutoría dinámica encaja mejor que como "charla de inclusión".</li>
+        <li><strong>Falta la voz del comprador.</strong> La encuesta fue a alumnos, pero quien paga es el colegio. Conversa con 3 a 5 tutores o directores para confirmar precio, tiempo disponible y disposición a suscribirse.</li>
+        <li><strong>Evita que simular una condición se vuelva burla.</strong> La guía del docente debe cerrar cada dinámica con una reflexión y una acción de ayuda, y deberías validarla con un especialista.</li>
+      </ul>
+    </div>
+  </section>
+  </main>
+
+  <footer>Basado en el documento "Emprendimiento Sesión 2" (idea de negocio, modelo y encuesta). Precios y costos son supuestos de trabajo para completar el lienzo.</footer>
+</div>
+</body>
+</html>
